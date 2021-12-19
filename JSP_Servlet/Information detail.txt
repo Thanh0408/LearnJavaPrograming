@@ -1,0 +1,3 @@
+Webapp: has JSP files (interfaces)
+Java: +View: has Servlet files
+      +Rest: have Java files
