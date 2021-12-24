@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="c1" class="tsdv.model.Customer">
+        <property name="fullName" value="Ngo The Chung"/>
+        <property name="dob" value="1999/04/15"/>
+        <property name="address" value="number 13, Cau Giay street, Ha noi, viet nam"/>
+        <property name="email" value="chungnt@gmail.com"/>
+        <property name="phoneNumber" value="0378275361"/>
+        <property name="gender" value="Male"/>
+    </bean>
+    <bean id="c2" class="tsdv.model.Customer">
+        <property name="fullName" value="Le Quang Thanh"/>
+        <property name="dob" value="1998/08/04"/>
+        <property name="address" value="number 182, Nam Tu liem district, Ha noi, viet nam"/>
+        <property name="email" value="thanhlq@gmail.com"/>
+        <property name="phoneNumber" value="0378017678"/>
+        <property name="gender" value="Male"/>
+    </bean>
+</beans>
