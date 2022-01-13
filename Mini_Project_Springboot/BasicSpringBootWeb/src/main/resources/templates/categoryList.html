@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="header">
+<head>
+    <meta charset="UTF-8">
+    <title>Category list</title>
+    <link rel="stylesheet" th:href="@{css/category-style.css}">
+    <link rel="stylesheet" th:href="@{fontawesome/css/all.css}">
+</head>
+<body>
+<div layout:fragment="content" class="text-center">
+    <a th:href="@{/category/add}" class="fas fa-plus-square icon icon-category-list"></a>
+    <table class="table-category-list">
+        <tr>
+            <th>Category name</th>
+            <th>Description</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="category: ${categoryList}">
+            <td th:text="${category.name}"></td>
+            <td th:text="${category.description}"></td>
+            <td>
+                <a th:href="'category/update/' + ${category.id}" class="far fa-edit modify-icon"></a>
+            </td>
+            <td>
+                <a th:href="'category/delete/' + ${category.id}" class="far fa-trash-alt modify-icon"></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6"><a th:href="@{/product/add}" class="fas fa-plus-square icon icon-category-list"/></td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>

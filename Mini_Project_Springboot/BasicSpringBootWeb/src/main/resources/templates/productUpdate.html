@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="header">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add products</title>
+    <base href="/">
+    <link rel="stylesheet" th:href="@{css/header-icon.css}">
+    <link rel="stylesheet" th:href="@{css/product-style.css}" class="css">
+</head>
+<body>
+<div layout:fragment="content" class="add-product">
+    <div class="add-product-background">
+
+    </div>
+    <div class="add-product-body">
+        <h2>Add product</h2>
+        <form th:action="@{product/save}" th:object="${product}" class="add-product-form">
+
+            <label class="add-product-body-label">Product name</label><br>
+            <input class="add-product-body-input" type="text" required th:field="*{name}"/><br><br>
+
+            <label class="add-product-body-label">Image</label><br>
+            <input class="add-product-body-input" type="text" required th:field="*{image}"><br><br>
+
+            <label class="add-product-body-label">Product code</label><br>
+            <input class="add-product-body-input" type="text" required th:field="*{code}"/><br><br>
+
+            <div th:object="${productDetail}">
+                <label class="add-product-body-label">Product name</label><br>
+                <input class="add-product-body-input" type="text" required th:field="*{brand}"/><br><br>
+
+                <label class="add-product-body-label">Color</label>
+                <input class="radio-bt" type="radio" th:field="*{color}" th:value="Black" th:text="' Black '" />
+                <input class="radio-bt" type="radio" th:field="*{color}" th:value="White" th:text="' White '" />
+                <input class="radio-bt" type="radio" th:field="*{color}" th:value="Blue" th:text="' Blue '" />
+                <input class="radio-bt" type="radio" th:field="*{color}" th:value="Red" th:text="' Red '" />
+                <input class="radio-bt" type="radio" th:field="*{color}" th:value="Red" th:text="' Silver '" /><br><br>
+
+                <label class="add-product-body-label">Price</label><br>
+                <input class="add-product-body-input" type="number" required th:field="*{price}" step="1"/><br><br>
+
+                <label class="add-product-body-label">Quantity</label><br>
+                <input class="add-product-body-input" type="number" required th:field="*{size_40}" placeholder="size 40" step="1"/><br>
+                <input class="add-product-body-input" type="number" required th:field="*{size_41}" placeholder="size 41" step="1"/><br>
+                <input class="add-product-body-input" type="number" required th:field="*{size_42}" placeholder="size 42" step="1"/><br><br>
+            </div>
+
+            <label class="add-product-body-label">Product category </label>
+            <select class="form-select" th:field="*{category}">
+                <option th:each="cate : ${categoryList}" th:value="${cate.id}" th:text="${cate.name}" />
+            </select><br><br>
+
+            <label class="add-product-body-label">Shop name </label>
+            <input type="checkbox" class="checkbox" th:field="*{shop}" th:each="sh : ${shopList}" th:value="${sh.id}" th:text="'  ' + ${sh.name} + '  '" /><br>
+            <div class="submit-button-center">
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

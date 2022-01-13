@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="header">
+<head>
+    <meta charset="UTF-8">
+    <title>All products</title>
+    <link rel="stylesheet" th:href="@{css/product-style.css}">
+    <link rel="stylesheet" th:href="@{fontawesome/css/all.css}">
+</head>
+<body>
+<div layout:fragment="content" class="text-center">
+    <a th:href="@{/product/add}" class="fas fa-plus-square icon icon-product-list"></a>
+    <table class="table-product-list">
+        <tr>
+            <th>
+                <a th:href="@{/}" class="fas fa-sort-alpha-up icon-sort"></a>
+                Product Name
+                <a th:href="@{/}" class="fas fa-sort-alpha-down icon-sort"></a>
+            </th>
+            <th>Product image</th>
+            <th>
+                <a th:href="@{/}" class="fas fa-arrow-circle-up icon-sort"></a>
+                Price
+                <a th:href="@{/}" class="fas fa-arrow-circle-down icon-sort"></a>
+            </th>
+            <th>Category</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+
+        <tr th:each="product: ${products}">
+            <td th:text="${product.name}"></td>
+            <td>
+                <a th:href="'product/' + ${product.id}">
+                    <img th:src="@{${product.image}}" width="150" height="150">
+                </a>
+            </td>
+            <td th:text="${product.productDetail.price}"></td>
+            <td>
+                <a th:href="'category/'+${product.category.id}"  th:text="${product.category.name}"></a>
+            </td>
+            <td>
+                <a th:href="'product/update/' + ${product.id}" class="far fa-edit modify-icon"></a>
+            </td>
+            <td>
+                <a th:href="'product/delete/' + ${product.id}" class="far fa-trash-alt modify-icon"></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6"><a th:href="@{/product/add}" class="fas fa-plus-square icon icon-product-list"/></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

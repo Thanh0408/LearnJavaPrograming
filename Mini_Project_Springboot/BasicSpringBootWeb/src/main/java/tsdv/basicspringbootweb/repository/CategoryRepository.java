@@ -1,0 +1,7 @@
+package tsdv.basicspringbootweb.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import tsdv.basicspringbootweb.entity.Category;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+}
