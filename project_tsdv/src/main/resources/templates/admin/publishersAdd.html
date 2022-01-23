@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="admin/_menuBar">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container col-md-5 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/admin_publishers/save}" th:object="${publishers}" method="post">
+                <h2 class="text-center text-primary">ADD PUBLISHER</h2>
+                <fieldset class="form-group">
+                    <label>Publisher</label>
+                    <input class="form-control" type="text" th:field="*{name}"
+                           onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))'>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Mobile</label>
+                    <input class="form-control" type="text" pattern="[0]{1}[0-9]{9}" placeholder="0123456789-begin by zero" th:field="*{number}">
+                </fieldset>
+                <div class="col text-center mt-3">
+                    <button type="submit" class="btn btn-success">ADD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

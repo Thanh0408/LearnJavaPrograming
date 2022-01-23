@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="user/_menuUser">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container text-center mt-5 col-md-6 pt-5">
+    <div class="row">
+        <div class="col-md-7 px-md-5">
+            <img th:src="'/imagesData/'+ ${book.image}" alt="book cover" th:width="300" th:height="400">
+        </div>
+        <div class="col-md-5 text-start">
+            <h1 class="text-uppercase" th:text="${book.name}"></h1>
+            <div th:each="author: ${book.authorList}">Author:
+                <a style="display: inline" class="d-inline text-primary text-decoration-none" th:text="${author.name}"  th:href="'/admin_authors/' + ${author.id}"></a>
+            </div>
+            <h4 class="pt-3 pb-3" th:text="'Price: ' + ${book.price}"></h4>
+            <h6 class="pt-3" >Publisher:
+                <a class="text-decoration-none" th:text="${book.publishers.name}"/>
+            </h6>
+            <!--            <h6 class="pb-3" th:text="'Publisher: ' + ${book.publishers}"></h6>-->
+            <h6 th:text="'Pages: ' + ${book.page}"></h6>
+            <h6 class="pt-3 pb-3" th:text="'Size: ' + ${book.size}"></h6>
+            <h6 th:text="'Stock: ' + ${book.quantity}"></h6>
+            <h6 class="pt-3">Category:
+                <ul th:each="cate: ${book.categoriesList}">
+                    <li>
+                        <a class="text-decoration-none" th:text="${cate.name}"/>
+                    </li>
+                </ul>
+            </h6>
+            <p class="pt-3 pb-3" th:text="'Book overview: ' + ${book.description}"></p>
+        </div>
+        <div class="card justify-content-center">
+            <button class="btn btn-dark mb-2" th:href="'bookshop/addcart/'+ ${book.id}">Add to cart</button>
+            <button class="btn btn-danger" th:href="'bookshop/buynow/'+ ${book.id}">Buy now</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

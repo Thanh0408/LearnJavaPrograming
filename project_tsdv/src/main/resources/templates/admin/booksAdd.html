@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/_menuBar">
+<head>
+    <meta charset="UTF-8">
+    <title>Add book</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 mt-4">
+  <div class="card">
+    <div class="card-body">
+      <form th:action="@{/admin_books/save}" th:object="${book}" method="post" enctype="multipart/form-data">
+        <h2 class="text-center text-primary" th:text="'ADD'"></h2>
+        <fieldset class="form-group">
+          <label>Book name </label>
+          <input class="form-control" type="text" required th:field="*{name}">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Authors (you can choose one or more)</label>
+          <select multiple class="form-select" required th:field="*{authorList}">
+            <option th:each="pub : ${authorsList}" th:value="${pub.id}" th:text="${pub.name}" />
+          </select>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Category (you can choose one or more)</label>
+          <select multiple class="form-select" required th:field="*{categoriesList}">
+            <option th:each="pub : ${categoriesList}" th:value="${pub.id}" th:text="${pub.name}" />
+          </select>
+        </fieldset>
+
+<!--        <fieldset class="form-group">-->
+<!--          <label>Image </label>-->
+<!--          <input class="form-control" type="text" th:field="*{image}">-->
+<!--        </fieldset>-->
+        <fieldset class="form-group">
+          <label>Image</label>
+          <input class="form-control" type="file" name="image" accept="image/png, image/jpeg">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label>Price</label>
+          <input class="form-control" type="number" required th:field="*{price}">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Page number</label>
+          <input class="form-control" type="number" th:field="*{page}">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Description </label>
+          <textarea class="form-control" type="text" th:field="*{description}"/>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Stock</label>
+          <input class="form-control" type="number" required th:field="*{quantity}">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Publishers (you can choose one or more)</label>
+          <select multiple class="form-select" th:field="*{publishers}">
+            <option th:each="pub : ${publishersList}" th:value="${pub.id}" th:text="${pub.name}" />
+          </select>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Size</label>
+            <input type="radio" th:field="*{size}" th:value="10x15" th:text="' 10x15 '" />
+            <input type="radio" th:field="*{size}" th:value="20x30" th:text="' 20x30 '" />
+            <input type="radio" th:field="*{size}" th:value="30x40" th:text="' 30x40 '" />
+        </fieldset>
+
+        <div class="col text-center mt-3">
+          <button type="submit" class="btn btn-success">ADD</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
