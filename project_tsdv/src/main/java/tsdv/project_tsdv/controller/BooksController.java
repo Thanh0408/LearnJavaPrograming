@@ -45,20 +45,16 @@ public class BooksController {
 
     @RequestMapping("")
     public String getBooksList(Model model, HttpSession session) {
-        if (session.getAttribute("role").equals("1")){
+        System.out.println("1111");
             List<Books> booksList = booksRepository.findAll();
             model.addAttribute("booksList", booksList);
             return "admin/booksList";
-        }else {
-            return "fail/PermissionDenied";
-        }
     }
 
     @RequestMapping("/{id}")
     public String getBookById (Model model,
                                HttpSession session,
                                @PathVariable(value= "id") Long id){
-        if (session.getAttribute("role").equals("1")){
             Books book = booksRepository.getById(id);
             List<Authors> authorsList = authorsRepository.findAll();
             List<Categories> categoriesList = categoriesRepository.findAll();
@@ -68,9 +64,6 @@ public class BooksController {
             model.addAttribute("categoriesList", categoriesList);
             model.addAttribute("publishersList", publishersList);
             return "admin/booksDetail";
-        }else {
-            return "fail/PermissionDenied";
-        }
     }
 
     @RequestMapping("/edit/{id}")
@@ -78,7 +71,6 @@ public class BooksController {
             @PathVariable (value = "id") Long id,
                             HttpSession session,
                             Model model)  {
-        if (session.getAttribute("role").equals("1")){
             Books book = booksRepository.getById(id);
             List<Categories> categoriesList = categoriesRepository.findAll();
             List<Authors> authorsList = authorsRepository.findAll();
@@ -88,14 +80,12 @@ public class BooksController {
             model.addAttribute("authorsList", authorsList);
             model.addAttribute("publishersList", publishersList);
             return "admin/booksEdit";
-        }else {
-            return "fail/PermissionDenied";
-        }
+
     }
 
     @RequestMapping("/add")
     public String addBook(Model model,HttpSession session) {
-        if (session.getAttribute("role").equals("1")){
+
             Books book = new Books();
             List<Categories> categoriesList = categoriesRepository.findAll();
             List<Authors> authorsList = authorsRepository.findAll();
@@ -105,9 +95,7 @@ public class BooksController {
             model.addAttribute("publishersList", publishersList);
             model.addAttribute("book", book);
             return "admin/booksAdd";
-        }else {
-            return "fail/PermissionDenied";
-        }
+
     }
 
     @RequestMapping("/save")
