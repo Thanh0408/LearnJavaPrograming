@@ -22,6 +22,7 @@ public class BankingEX {
                     break;
                 case 2:
                     showBrand();
+                    System.out.print("Edit by brand name: ");
                     int edit_location = findBrand();
                     if (edit_location == -1) {
                         System.out.println("Do not have that brand name!");
@@ -32,6 +33,7 @@ public class BankingEX {
                     break;
                 case 3:
                     showBrand();
+                    System.out.print("Delete by brand name: ");
                     int delete_location = findBrand();
                     if (delete_location == -1) {
                         System.out.println("Do not have that brand name!");
@@ -88,6 +90,28 @@ public class BankingEX {
                         displayBalance(show_balance_locate);
                     }
                     break;
+                case 9:
+                    showCustomer();
+                    System.out.println("Input customer identification, you want withdraw money: ");
+                    int withdraw = findCustomer();
+                    if (withdraw == -1) {
+                        System.out.println("Identify number not exists!");
+                    }
+                    else {
+                        withDrawMoney(withdraw);
+                    }
+                    break;
+                case 10:
+                    showCustomer();
+                    System.out.println("Input customer identification, you want plus money: ");
+                    int plusMoney = findCustomer();
+                    if (plusMoney == -1) {
+                        System.out.println("Identify number not exists!");
+                    }
+                    else {
+                        addMoney(plusMoney);
+                    }
+                    break;
                 default:
                     System.out.println("Not matching option! Try again!");
             }
@@ -104,6 +128,8 @@ public class BankingEX {
         System.out.println("6. Remove a customer");
         System.out.println("7. Open an account for a customer");
         System.out.println("8. Display balance for a customer account");
+        System.out.println("9. Withdraw money for a customer account");
+        System.out.println("10. Add money for a customer account");
         System.out.println("0. Exit");
     }
 
@@ -135,7 +161,6 @@ public class BankingEX {
     private int findBrand() {
         int locate = -1;
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Search by brand name: ");
         String name = scanner.nextLine();
         for (int i = 0; i < brands.size(); i++) {
             if (name.equals(brands.get(i).getName())) {
@@ -226,7 +251,7 @@ public class BankingEX {
                 }
             }
         }
-
+        customer.setBalance(50000);
         customers.add(customer);
     }
 
@@ -328,5 +353,25 @@ public class BankingEX {
             }
         }
         return identifyNumber;
+    }
+
+    private void addMoney(int locate) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Add money: ");
+        int money = Integer.parseInt(scanner.nextLine());
+        customers.get(locate).setBalance(customers.get(locate).getBalance() + money);
+        System.out.println("Your balance is: " + customers.get(locate).getBalance());
+    }
+
+    private void withDrawMoney(int locate) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Money withdraw: ");
+        int withDraw = Integer.parseInt(scanner.nextLine());
+        if(withDraw > customers.get(locate).getBalance()){
+            System.out.println("Not enough money!");
+        } else {
+            customers.get(locate).setBalance(customers.get(locate).getBalance()-withDraw);
+            System.out.println("Your balance is: " + customers.get(locate).getBalance());
+        }
     }
 }

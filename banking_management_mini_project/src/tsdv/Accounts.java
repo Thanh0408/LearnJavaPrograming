@@ -4,24 +4,17 @@ public class Accounts{
     private String user_name;
     private String password;
     private double balance;
-    private double deposit;
+
 
     public Accounts(){};
 
-    public Accounts(String user_name, String password) {
-        this.user_name = user_name;
-        this.password = password;
-        this.balance = 0;
-        this. deposit = 0;
-    }
+//    public Accounts(String user_name, String password) {
+//        this.user_name = user_name;
+//        this.password = password;
+//        this.balance = 0;
+//
+//    }
 
-    public double getDeposit() {
-        return deposit;
-    }
-
-    public void setDeposit(double deposit) {
-        this.deposit = deposit;
-    }
 
     public double getBalance() {
         return balance;
