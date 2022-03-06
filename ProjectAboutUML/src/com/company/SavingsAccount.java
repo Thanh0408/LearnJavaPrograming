@@ -3,7 +3,7 @@ package com.company;
 public class SavingsAccount extends Account {
     private double intRate; // annual interest rate for
     public SavingsAccount(int idNumber, double balance, double rate) {
-        B ;// write code here
+        super(idNumber, balance);// write code here
         intRate=rate;
     } 
     public double monthlyInterest() {

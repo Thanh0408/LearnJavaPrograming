@@ -7,7 +7,7 @@ public class CurrentAccount extends Account {
         checkCharge = chkCharge;
     }
     public void clearCheck(double amount) {
-        C;// u write code here
+        startBal -= (checkCharge  + amount);// u write code here
     }
     public double monthlyInterest() {
         return 0.0;

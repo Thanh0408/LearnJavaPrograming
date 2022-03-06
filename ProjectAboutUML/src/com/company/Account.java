@@ -7,13 +7,13 @@ public abstract class Account { 
         if (startBal>0.0) {
             idNum=idNumber;
             balance=startBal;
-        } else
-            throw new IllegalArgumentException();
+        } else throw new IllegalArgumentException();
     } 
     public int idNumber() { return idNum; } 
     public double currentBalance() { return balance; }
     public void deposit(double amount) {
-        if(amount>0.0) //write code here
+        if(amount>0.0)
+            balance+= amount;//write code here = A
         else
             throw new IllegalArgumentException();
     } 
